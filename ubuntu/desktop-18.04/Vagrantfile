@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "kaishuu0123/ubuntu-desktop-bionic64-ja-dev"
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.customize ["modifyvm", :id, "--cpus", "4"]
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["storageattach", :id, 
+                    "--storagectl", "IDE Controller", 
+                    "--port", "0", "--device", "1", 
+                    "--type", "dvddrive", 
+                    "--medium", "emptydrive"]
+    vb.gui = true
+  end
+end
